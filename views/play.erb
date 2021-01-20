@@ -5,8 +5,13 @@
       <td> <%= @name %>: 100 HP </td>
       <td> <%= @name2 %>: 100 HP </td>
     </tr>
-    <tr id="Hit Points">
-      <td> 100 </td>
-      <td> 100 </td>
-    </tr>
 </table>
+
+<form method="get" action="/play">
+  <input id="attack" type="hidden" name="attack" value= true ></input>
+  <input type="submit" value="Attack!!"> </input>
+</form>
+
+<% if @attack %>
+<h1> <%= @name2 %> was attacked by <%= @name %>! </h1>
+<% end %>

@@ -18,9 +18,9 @@ class Battle < Sinatra::Base
   get '/play' do
     @name = session[:name]
     @name2 = session[:name2]
+    @attack = params[:attack]
     erb(:play)
   end
 
   run! if app_file == $0
-
 end
