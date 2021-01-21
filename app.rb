@@ -16,11 +16,16 @@ class Battle < Sinatra::Base
   end
 
   get '/play' do
-    p params
-    @name = $name.name
-    @name2 = $name2.name
-    @attack = params[:attack]
+    @name = $name
+    @name2 = $name2
     erb(:play)
+  end
+
+  get '/attack' do
+    @name = $name
+    @name2 = $name2
+    @name.attack(@name2)
+    erb(:attack)
   end
 
   run! if app_file == $0
