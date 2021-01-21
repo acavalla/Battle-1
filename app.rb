@@ -1,26 +1,24 @@
 require 'sinatra/base'
+require_relative './lib/player'
 
 class Battle < Sinatra::Base
 
-  enable :sessions
-  set :session_secret, 'super secret'
-
-
+  #enable :sessions
 
   get '/' do
-    'Testing infrastructure working!'
     erb(:index)
   end
 
   post '/names' do
-    session[:name] = params['name']
-    session[:name2] = params['name2']
+    $name = Player.new(params[:name])
+    $name2 = Player.new(params[:name2])
     redirect "/play"
   end
 
   get '/play' do
-    @name = session[:name]
-    @name2 = session[:name2]
+    p params
+    @name = $name.name
+    @name2 = $name2.name
     @attack = params[:attack]
     erb(:play)
   end
